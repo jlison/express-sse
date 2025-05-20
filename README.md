@@ -66,7 +66,7 @@ Run the application in development mode with hot reloading:
 bun run dev
 ```
 
-This will start the server on port 3000 (default) with hot reloading enabled.
+This will start the server on port 5000 (default) with hot reloading enabled.
 
 ## Building for Production
 
@@ -104,7 +104,7 @@ triggered.
 Example client usage:
 
 ```javascript
-const eventSource = new EventSource('http://localhost:3000/events');
+const eventSource = new EventSource('http://localhost:5000/events');
 
 eventSource.onmessage = (event) => {
   const data = JSON.parse(event.data);
@@ -125,7 +125,7 @@ clients.
 Example:
 
 ```bash
-curl -X POST http://localhost:3000/trigger-event \
+curl -X POST http://localhost:5000/trigger-event \
   -H "Content-Type: application/json" \
   -d '{"message": "New event", "data": {"key": "value"}}'
 ```
@@ -157,7 +157,7 @@ The application can be configured using environment variables in a `.env` file:
 
 | Variable           | Description                                                          | Default     |
 | ------------------ | -------------------------------------------------------------------- | ----------- |
-| `PORT`             | Server port                                                          | 3000        |
+| `PORT`             | Server port                                                          | 5000        |
 | `WATCH_FOLDER`     | Directory to monitor for file changes                                | './watched' |
 | `CORS_ORIGIN`      | CORS origin policy (use comma-separated values for multiple origins) | '\*'        |
 | `CORS_CREDENTIALS` | Enable CORS credentials                                              | false       |

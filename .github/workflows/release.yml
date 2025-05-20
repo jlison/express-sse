@@ -12,14 +12,13 @@ jobs:
       - name: ⬇️ Checkout repository
         uses: actions/checkout@v4
 
-      - name: ⎔ Setup Node.js
-        uses: actions/setup-node@v4
+      - name: ⎔ Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          node-version-file: '.nvmrc'
-          cache: 'npm'
+          bun-version: latest
 
       - name: 📥 Install dependencies
-        run: npm i
+        run: bun install
 
       - name: 🏷️ Semantic Release
         uses: cycjimmy/semantic-release-action@v4
