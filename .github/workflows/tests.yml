@@ -1,0 +1,28 @@
+name: 🧪 Tests
+on:
+  pull_request:
+
+jobs:
+  style:
+    name: Style checks
+    runs-on: ubuntu-latest
+    if: ${{ github.actor != 'dependabot[bot]' }}
+    timeout-minutes: 10
+    steps:
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v4
+
+      - name: ⎔ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: 📥 Install dependencies
+        run: npm i
+
+      - name: 🔬 Lint
+        run: npm run lint
+
+      - name: 💅🏻 Prettier
+        run: npm run prettier:check
