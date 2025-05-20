@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "A demo express sse app",
   "main": "dist/server.js",
+  "private": true,
   "scripts": {
     "build": "tsc",
     "commit": "npx git-cz",
