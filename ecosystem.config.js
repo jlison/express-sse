@@ -11,6 +11,7 @@ module.exports = {
       env: {
         NODE_ENV: 'production',
         PORT: 3000,
+        WATCH_FOLDER: './watched',
         CORS_ORIGIN: '*',
         CORS_CREDENTIALS: 'false',
       },

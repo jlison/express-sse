@@ -7,8 +7,9 @@
  */
 export interface EventData<T = unknown> {
   message: string;
-  data?: T;
+  filename?: string;
   timestamp?: number;
+  data?: T;
 }
 
 /**
@@ -16,6 +17,7 @@ export interface EventData<T = unknown> {
  */
 export interface AppConfig {
   port: number;
+  watchFolder: string;
   cors: {
     origin: string | string[];
     credentials: boolean;

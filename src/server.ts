@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import fs from 'fs';
 
 import config from '@/config';
 import {
@@ -7,14 +8,16 @@ import {
   notFoundHandler,
   errorHandler,
 } from '@/middleware/error-handlers';
+import FileWatcher from '@/utils/file-watcher';
 import SseManager from '@/utils/sse-manager';
 import {EventData} from '@/types';
 
 // Initialize Express app
 const app = express();
 
-// Initialize SSE manager
+// Initialize SSE manager and file watcher
 const sseManager = new SseManager();
+const fileWatcher = new FileWatcher(config.watchFolder);
 
 // Set up middleware
 app.use(
@@ -55,6 +58,7 @@ app.get('/status', (req, res) => {
   res.json({
     status: 'ok',
     clients: sseManager.getClientCount(),
+    watchFolder: config.watchFolder,
     uptime: process.uptime(),
     timestamp: Date.now(),
   });
@@ -64,9 +68,24 @@ app.get('/status', (req, res) => {
 app.use(notFoundHandler);
 app.use(errorHandler);
 
+// Start watching for file changes
+fileWatcher.onFileAdded((data: EventData) => {
+  sseManager.broadcast(data);
+});
+
 // Start the server
 const server = app.listen(config.port, () => {
   console.log(`Server running on port ${config.port}`);
+  console.log(`Watching for file changes in: ${config.watchFolder}`);
+
+  // Ensure the watched directory exists
+  if (!fs.existsSync(config.watchFolder)) {
+    fs.mkdirSync(config.watchFolder, {recursive: true});
+    console.log(`Created watch folder: ${config.watchFolder}`);
+  }
+
+  // Start the file watcher
+  fileWatcher.start();
 });
 
 // Handle graceful shutdown
@@ -75,6 +94,7 @@ const gracefulShutdown = () => {
 
   server.close(() => {
     console.log('HTTP server closed');
+    fileWatcher.stop();
     process.exit(0);
   });
 

@@ -54,7 +54,8 @@ export class FileWatcher {
           if (fs.existsSync(filePath)) {
             console.log(`New file detected: ${filename}`);
             const eventData: EventData = {
-              message: filename,
+              message: 'New file added',
+              filename,
               timestamp: Date.now(),
             };
 
