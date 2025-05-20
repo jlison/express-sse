@@ -1,0 +1,67 @@
+{
+  "name": "express-sse",
+  "version": "0.0.0",
+  "description": "A demo express sse app",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "commit": "npx git-cz",
+    "dev": "bun --hot src/server.ts",
+    "lint:fix": "eslint --fix .",
+    "lint": "eslint .",
+    "prepare": "husky",
+    "prettier:check": "prettier --check .",
+    "prettier:commit": "npm run prettier && git add .",
+    "prettier:fix": "npm run prettier",
+    "prettier": "prettier --write .",
+    "prod:logs": "pm2 logs",
+    "prod:monit": "pm2 monit",
+    "prod:restart": "pm2 restart ecosystem.config.js",
+    "prod:stop": "pm2 stop ecosystem.config.js",
+    "prod": "pm2 start ecosystem.config.js",
+    "start": "bun dist/server.js",
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlison/express-sse.git"
+  },
+  "author": "jlison",
+  "bugs": {
+    "url": "https://github.com/jlison/express-sse/issues"
+  },
+  "homepage": "https://github.com/jlison/express-sse#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.27.0",
+    "@types/cors": "^2.8.17",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.5",
+    "@types/uuid": "^9.0.8",
+    "eslint": "^9.27.0",
+    "globals": "^16.1.0",
+    "husky": "^9.1.7",
+    "pm2": "^5.3.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.3.3",
+    "typescript-eslint": "^8.32.1"
+  },
+  "overrides": {
+    "commitizen": "npm:empty-npm-package@1.0.0"
+  },
+  "engines": {
+    "node": "22.x"
+  },
+  "license": "MIT",
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+}

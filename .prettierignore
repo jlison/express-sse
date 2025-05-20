@@ -1,0 +1,14 @@
+node_modules
+build
+coverage
+dist
+.idea
+bin
+docker
+public
+var
+vendor
+.history
+.next
+.temp
+.branches
