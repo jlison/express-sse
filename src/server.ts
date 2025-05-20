@@ -29,6 +29,14 @@ app.use(
 app.use(express.json());
 app.use(requestLogger);
 
+// Status endpoint
+app.get('/', (req, res) => {
+  res.json({
+    status: 'ok',
+    message: 'Server is running',
+  });
+});
+
 // SSE endpoint
 app.get('/events', (req, res) => {
   // Connect the client to the SSE manager
