@@ -52,7 +52,7 @@
     "pm2": "^5.3.0",
     "prettier": "^3.5.3",
     "typescript": "^5.3.3",
-    "typescript-eslint": "^8.32.1"
+    "typescript-eslint": "^8.35.1"
   },
   "overrides": {
     "commitizen": "npm:empty-npm-package@1.0.0"
