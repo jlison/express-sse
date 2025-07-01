@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/jlison/express-sse#readme",
   "dependencies": {
-    "bun": "^1.2.13",
+    "bun": "^1.2.17",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
