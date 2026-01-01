@@ -36,7 +36,7 @@
     "bun": "^1.2.13",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
-    "express": "^5.1.0",
+    "express": "^5.2.1",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
